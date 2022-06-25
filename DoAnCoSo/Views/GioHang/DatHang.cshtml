@@ -1,0 +1,62 @@
+﻿@model IEnumerable<DoAnCoSo.Models.GioHang>
+@{
+    ViewBag.Title = "Dathang";
+    Layout = "~/Views/Shared/_LayoutDefault - Copy.cshtml";
+}
+<br />
+<h2 class="text-center">XÁC NHẬN ĐẶT HÀNG</h2>
+<br />
+</p>
+<table class="table">
+    <tr>
+        <th> Tên sản phẩm</th>
+
+        <th> Hình ảnh</th>
+
+        <th> Đơn giá</th>
+
+        <th> Số lượng</th>
+
+        <th> Thành tiền</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.sTen)
+            </td>
+            <td>
+                <img src="@item.sHinhanh" width="180" />
+            </td>
+            @using (Html.BeginForm("Capnhatdonhang", "Giohang", new { @id = item.iMa }))
+            {
+                <td>@String.Format("{0:0,0}", item.dDongia) VND</td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.iSoluong)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ThanhTien)
+                </td>
+            }
+        </tr>
+    }
+    <tr style="font-weight:bold; text-align:right; color:red">
+        <td colspan="4"> Số lượng sản phẩm: @ViewBag.Tongsoluongsanpham </td>
+        <td colspan="5"> Tổng tiền: @string.Format("{0:0,0}", @ViewBag.Tongtien)VNĐ </td>
+    </tr>
+    <tr style="font-weight:bold; text-align:right; color:yellow">
+        <td colspan="6" style="text-align:right;color:blue">
+            @using (Html.BeginForm("XacNhan", "GioHang", new { @class = "" }))
+            {
+
+                <input type="submit" value="Xác nhận" class="btn-success" />}
+        </td>
+    </tr>
+    @*<tr style="text-align:right">
+        <td colspan="6">@Html.ActionLink("Xác nhận", "XacNhan", "GioHang")</td>
+    </tr>*@
+
+</table>
+

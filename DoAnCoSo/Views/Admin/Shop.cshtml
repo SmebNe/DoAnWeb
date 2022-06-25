@@ -1,0 +1,53 @@
+﻿@model IEnumerable<DoAnCoSo.Models.Shop>
+@{
+    ViewBag.Title = "Shop";
+    Layout = "~/Views/Admin/_LayoutAdmin.cshtml";
+}
+<div class="card">
+    <h3 class="card-header text-center font-weight-bold text-uppercase py-4">
+        Shop
+    </h3>
+    <div class="card-body">
+        <div class="table-editable">
+            <span class="table-add float-start mb-3 mr-2">
+                <a href="https://localhost:44370/Admin/Create" class="text-success"><i class="fas fa-plus fa-2x" aria-hidden="true"></i></a>
+            </span>
+            <table class="table table-bordered table-responsive-md text-center">
+                <thead>
+                    <tr>
+                        <th class="text-center">Tên sản phẩm</th>
+                        <th class="text-center">Trạng thái</th>
+                        <th class="text-center">Phân loại</th>
+                        <th class="text-center">Mô tả</th>
+                        <th class="text-center">Giá</th>
+                        <th class="text-center">Sửa</th>
+                        <th class="text-center">Xoá</th>
+                    </tr>
+                </thead>
+                @foreach (var item in Model)
+                {
+                    <tbody>
+                        <tr>
+                            <td class="pt-3-half"> @Html.DisplayFor(modelItem => item.Ten)</td>
+                            <td class="pt-3-half">@Html.DisplayFor(modelItem => item.TrangThai)</td>
+                            <td class="pt-3-half">@Html.DisplayFor(modelItem => item.PhanLoai)</td>
+                            <td class="pt-3-half">@Html.DisplayFor(modelItem => item.MoTa)</td>
+                            <td class="pt-3-half">@Html.DisplayFor(modelItem => item.Gia)</td>
+                            <td class="pt-3-half">
+                                <a class="fa-solid fa-pen-to-square"  @Html.ActionLink(" ", "Edit", new { id = item.Id })></a>
+                            </td>
+                            <td>
+                                <span class="table-remove">
+                                    <button type="button" class=" btn btn-danger btn-rounded btn-sm my-0">
+                                        
+                                        @Html.ActionLink("Remove", "Delete", new { id = item.Id })
+                                    </button>
+                                </span>
+                            </td>
+                        </tr>
+                    </tbody>
+                }
+            </table>
+        </div>
+    </div>
+</div>

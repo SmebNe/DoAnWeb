@@ -1,0 +1,42 @@
+﻿@model DoAnCoSo.Models.Nguoidung
+
+@{ ViewBag.Title = "Dangky";
+    Layout = "~/Views/Shared/_Layout.cshtml"; }
+
+<h2>Đăng ký tài khoản NGUSHY</h2>
+<div class="mt-5 justify-content-center d-flex">
+    <div class="account-page login col-md-5 form-vertical text-center">
+        <div class="account-page-title py-2 mb-3 border-bottom" style="color: #4a4a4a;">
+            <h4>Tạo tài khoản</h4>
+        </div>
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.EditorFor(model => model.Hoten, new { htmlAttributes = new { @class = "form-control my-1", @placeholder = "Họ tên" } })
+                @Html.ValidationMessageFor(model => model.Hoten, "", new { @class = "text-danger" })
+
+            </div>
+            <div class="form-group">
+                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control my-1", @placeholder = "Email" } })
+                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.EditorFor(model => model.Dienthoai, new { htmlAttributes = new { @class = "form-control my-1", @placeholder = "Số điện thoại" } })
+                @Html.ValidationMessageFor(model => model.Dienthoai, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group">
+                @Html.EditorFor(model => model.Matkhau, new { htmlAttributes = new { type = "Password", @class = "form-control my-1", @placeholder = "Mật khẩu" } })
+                @Html.ValidationMessageFor(model => model.Matkhau, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group">
+                @Html.EditorFor(model => model.Diachi, new { htmlAttributes = new { @class = "form-control my-1", @placeholder = "Địa chỉ" } })
+                @Html.ValidationMessageFor(model => model.Diachi, "", new { @class = "text-danger" })
+            </div>
+            <button class="btn btn-danger form-control my-1 mb-3" type="submit"> Đăng ký </button>
+        }
+        <p><a href="/Home/Home page" class="text-danger"> Trở về </a></p>
+    </div>
+</div>

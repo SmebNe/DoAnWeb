@@ -1,0 +1,28 @@
+﻿namespace DoAnCoSo.Migrations
+{
+    using System;
+    using System.Data.Entity.Migrations;
+    
+    public partial class sa : DbMigration
+    {
+        public override void Up()
+        {
+            CreateTable(
+                "dbo.GioHangDetails",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        mahang = c.Int(nullable: false),
+                        soluong = c.Int(nullable: false),
+                        gia = c.Double(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id);
+            
+        }
+        
+        public override void Down()
+        {
+            DropTable("dbo.GioHangDetails");
+        }
+    }
+}
